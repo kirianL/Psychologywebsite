@@ -188,9 +188,22 @@ export const HeroSection: React.FC = () => {
             </div>
 
             <div>
-              <p className="text-[12px] text-center text-[#C8DDD0] leading-relaxed px-2 min-h-[38px]">
-                {currentOutcome.quote}
-              </p>
+              <div className="grid grid-cols-1 items-center px-2">
+                {OUTCOME_PAGES.map((item, idx) => {
+                  const isActive = idx === pageIndex;
+                  return (
+                    <p
+                      key={idx}
+                      aria-hidden={!isActive}
+                      className={`col-start-1 row-start-1 text-[12px] text-center text-[#C8DDD0] leading-relaxed transition-opacity duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] ${
+                        isActive ? 'opacity-100' : 'opacity-0 pointer-events-none select-none'
+                      }`}
+                    >
+                      {item.quote}
+                    </p>
+                  );
+                })}
+              </div>
 
               <div className="mt-4 flex items-center justify-between gap-3">
                 <button
